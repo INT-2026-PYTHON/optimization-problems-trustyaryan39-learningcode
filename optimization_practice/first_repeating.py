@@ -83,3 +83,28 @@ element, giving an overall O(n) algorithm.
 =================================================
 
 """
+def first_repeating_brute(nums):
+    answer = -1
+    index = len(nums)
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] == nums[j]:
+                if j < index:
+                    index = j
+                    answer = nums[j]
+    return answer
+
+
+def first_repeating_fast(nums):
+    seen = set()
+    for num in nums:
+        if num in seen:
+            return num
+        seen.add(num)
+    return -1
+
+
+nums = [10, 5, 3, 4, 3, 5, 6]
+
+print(f"Brute force: {first_repeating_brute(nums)}")
+print(f"Optimized: {first_repeating_fast(nums)}")
